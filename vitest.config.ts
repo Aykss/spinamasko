@@ -18,6 +18,13 @@ export default defineConfig({
           environment: 'nuxt',
         },
       }),
+      await defineVitestProject({
+        test: {
+          name: 'integration',
+          include: ['test/nuxt/*.{test,spec}.ts'],
+          environment: 'node'
+        }
+      })
     ],
   },
 })
