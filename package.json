@@ -10,8 +10,19 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@libsql/client": "^0.15.15",
+    "@prisma/adapter-better-sqlite3": "^7.1.0",
+    "@prisma/adapter-libsql": "^7.1.0",
+    "@prisma/client": "^7.1.0",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^24.10.2",
+    "dotenv": "^17.2.3",
     "nuxt": "^4.2.1",
+    "prisma": "^7.1.0",
     "vue": "^3.5.25",
     "vue-router": "^4.6.3"
+  },
+  "prisma": {
+    "seed": "bun run prisma/seed.ts"
   }
 }

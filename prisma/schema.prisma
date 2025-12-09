@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "./generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Godparents{
+  id Int @id @default(autoincrement())
+
+  unique_id String @unique
+  name String
+  email String
+  password String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  given_gifts Given_Gifts[]
+  godchildren Godchildren[]
+  received_gifts Received_Gifts[]
+}
+
+model Given_Gifts{
+  id Int @id @default(autoincrement())
+
+  // 1 - Monetary
+  // 2 - Non-monetary
+  type Int
+  amount Decimal
+  name String?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  godparents Godparents @relation(fields: [godparents_id], references: [id])
+  godparents_id Int
+}
+
+model Godchildren {
+  id Int @id @default(autoincrement())
+
+  name String
+  total_chances Int 
+  used_chances Int
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  godparents Godparents @relation(fields: [godparents_id], references: [id])
+  godparents_id Int
+
+  received_gifts Received_Gifts[]
+}
+
+model Received_Gifts {
+  id Int @id @default(autoincrement())
+
+  taken_chance Int
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  godparents Godparents @relation(fields: [godparents_id], references: [id])
+  godparents_id Int
+
+  godchildren Godchildren @relation(fields: [godchildren_id], references: [id])
+  godchildren_id Int
+}
