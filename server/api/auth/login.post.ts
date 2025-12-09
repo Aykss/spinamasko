@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
         })
     }
 
-    const samePassword = await verifyPassword(godparent.password, password)
+    const samePassword = await verifyHashedPassword(godparent.password, password)
 
     if(!samePassword){
             throw createError({
