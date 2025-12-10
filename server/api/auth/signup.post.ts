@@ -1,6 +1,6 @@
 import { signupSchema } from "~~/server/utils/zod"
 import { nanoid } from 'nanoid'
-import { AuthGodparent } from "~~/server/utils/types"
+import type { AuthGodparent } from "~~/server/utils/types"
 import { CreateGodparent, FindGodparentByEmail } from "~~/server/controllers/AuthController"
 
 export default defineEventHandler(async (event) => {

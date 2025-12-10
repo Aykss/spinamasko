@@ -1,7 +1,7 @@
 import { beforeAll, afterAll, describe, test, expect } from "vitest";
 import { $fetch, setup } from '@nuxt/test-utils/e2e'
 import { DB } from '../../lib/database'
-import { AuthError, AuthResponse } from '../../server/utils/types'
+import type { AuthError, AuthResponse } from '../../server/utils/types'
 
 describe("Authentication API integration", async () => {
     await setup({
@@ -42,10 +42,11 @@ describe("Authentication API integration", async () => {
                 },
                 headers: { "Content-Type": "application/json" }
             })
-        } catch(e: any) {
+        } catch(e) {
+            const err = e as AuthError
             error = {
-                statusCode: e.statusCode,
-                statusMessage: e.statusMessage
+                statusCode: err.statusCode,
+                statusMessage: err.statusMessage
             }
         }
         expect(error).not.toBeNull()
@@ -63,10 +64,11 @@ describe("Authentication API integration", async () => {
                     password: "password12354",
                 }
             })
-        } catch(e: any) {
+        } catch(e) {
+            const err = e as AuthError
             error = {
-                statusCode: e.statusCode,
-                statusMessage: e.statusMessage
+                statusCode: err.statusCode,
+                statusMessage: err.statusMessage
             }
         }
         expect(error).not.toBeNull()
