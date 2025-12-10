@@ -15,6 +15,7 @@ CREATE TABLE "Given_Gifts" (
     "type" INTEGER NOT NULL,
     "amount" DECIMAL NOT NULL,
     "name" TEXT,
+    "quantity" INTEGER NOT NULL,
     "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" DATETIME NOT NULL,
     "godparents_id" INTEGER NOT NULL,
