@@ -1,4 +1,4 @@
-import { prisma } from "~~/lib/prisma"
+import { prisma } from "~~/server/database"
 
 export default defineEventHandler(async (event) => {
     const result = await readValidatedBody(event, body => loginSchema.safeParse(body))
@@ -30,12 +30,14 @@ export default defineEventHandler(async (event) => {
         })
     }
 
-    await setUserSession(event, {user: {
+    const user = {
         id: godparent.id,
         name: godparent.name,
         email: godparent.email,
         unique_id: godparent.unique_id
-    }})
+    }
 
-    return {success: true, godparent}
+    await setUserSession(event, user)
+
+    return {success: true, user}
 })

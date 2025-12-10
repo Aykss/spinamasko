@@ -1,8 +1,16 @@
+import 'dotenv/config'
 import { defineConfig } from 'vitest/config'
 import { defineVitestProject } from '@nuxt/test-utils/config'
+import path from 'path'
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      "~": path.resolve(__dirname, '../../')
+    }
+  },
   test: {
+    globals: true,
     projects: [
       {
         test: {

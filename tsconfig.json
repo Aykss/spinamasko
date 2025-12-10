@@ -16,6 +16,12 @@
     }
   ],
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"],              // maps ~/ to project root
+      "~~/*": ["./*"],             // maps ~~/
+      "@/*": ["./*"]               // optional, if you use @/ imports
+    },
     "module": "ESNext",
     "moduleResolution": "node",
     "target": "ES2023",
