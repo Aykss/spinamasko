@@ -1,37 +1,42 @@
-import { signupSchema } from "~~/server/utils/zod"
-import { nanoid } from 'nanoid'
-import type { AuthGodparent } from "~~/server/utils/types"
-import { CreateGodparent, FindGodparentByEmail } from "~~/server/controllers/AuthController"
+import { signupSchema } from "~~/server/utils/zod";
+import { nanoid } from "nanoid";
+import type { AuthGodparent } from "~~/server/utils/types";
+import {
+  CreateGodparent,
+  FindGodparentByEmail,
+} from "~~/server/controllers/AuthController";
 
 export default defineEventHandler(async (event) => {
-    const result = await readValidatedBody(event, body => signupSchema.safeParse(body))
+  const result = await readValidatedBody(event, (body) =>
+    signupSchema.safeParse(body),
+  );
 
-    if(!result.success){
-        throw createError({
-            statusCode: 400,
-            statusMessage: result.error.issues.map(e => e.message).join(', ')
-        })
-    } 
+  if (!result.success) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: result.error.issues.map((e) => e.message).join(", "),
+    });
+  }
 
-    const data = result.data
-    
-    const existing = await FindGodparentByEmail(data.email)
+  const data = result.data;
 
-    if(existing != null){
-        throw createError({
-            statusCode: 409,
-            statusMessage: "Email is already in use"
-        })
-    }
+  const existing = await FindGodparentByEmail(data.email);
 
-    const hashedPassword = await getHashedPassword(data.password)
+  if (existing != null) {
+    throw createError({
+      statusCode: 409,
+      statusMessage: "Email is already in use",
+    });
+  }
 
-    const godparent = await CreateGodparent({
-            ...data,
-            password: hashedPassword,
-            unique_id: nanoid(8)
-        })
+  const hashedPassword = await getHashedPassword(data.password);
 
-    return { success: true, godparent: {...godparent as AuthGodparent}}
-    // return { success: true}
-})
+  const godparent = await CreateGodparent({
+    ...data,
+    password: hashedPassword,
+    unique_id: nanoid(8),
+  });
+
+  return { success: true, godparent: { ...(godparent as AuthGodparent) } };
+  // return { success: true}
+});

@@ -10,8 +10,12 @@
     "postinstall": "nuxt prepare",
     "seed": "prisma db seed",
     "test": "vitest",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "lint:eslint": "npx eslint .",
+    "lint:prettier": "npx prettier ./server ./test --check",
+    "format": "npm run format:eslint && npm run format:prettier",
+    "format:eslint": "npx eslint . --fix",
+    "format:prettier": "npx prettier -w ./server ./test"
   },
   "dependencies": {
     "@nuxt/eslint": "^1.12.1",
@@ -37,11 +41,15 @@
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^24.10.2",
     "@vue/test-utils": "^2.4.6",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
     "happy-dom": "^20.0.11",
     "playwright-core": "^1.57.0",
+    "prettier": "^3.7.4",
     "prisma": "^7.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
+    "vite-plugin-eslint2": "^5.0.4",
     "vitest": "^3.2.4"
   }
 }
