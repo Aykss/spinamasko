@@ -90,7 +90,7 @@ describe("Authentication API integration", async () => {
     test("login should create a session cookie", async () => {
         let cookie: string | null = null
 
-        const res = await $fetch("/api/auth/login", {
+        const res: AuthResponse = await $fetch("/api/auth/login", {
         method: "POST",
         body: { email: "test@example.com", password: "password123" },
         headers: { "Content-Type": "application/json" },
