@@ -26,3 +26,5 @@ logs
 # Prisma Files
 prisma/db
 prisma/generated
+
+/generated/prisma
