@@ -1,5 +1,3 @@
-import { Godparents } from "~~/prisma/generated/prisma/client"
-
 export type AuthGodparent = {
     id: number,
     email: string,
@@ -13,13 +11,7 @@ export type AuthResponse = {
     message?: string
 }
 
-export type TestBody = {
-    email: string,
-    password: string,
-    name: string
-}
-
-export type TestResponse = {
-    success: boolean,
-    body: TestBody
+export type AuthError = {
+    statusCode: number
+    statusMessage: string
 }

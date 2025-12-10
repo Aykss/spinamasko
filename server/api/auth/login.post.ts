@@ -1,4 +1,4 @@
-import { prisma } from "~~/server/database"
+import { FindGodparentByEmail } from "~~/server/controllers/AuthController"
 
 export default defineEventHandler(async (event) => {
     const result = await readValidatedBody(event, body => loginSchema.safeParse(body))
@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
 
     const {email, password} = result.data
 
-    const godparent = await prisma.godparents.findFirst({where: {email}})
+    const godparent = await FindGodparentByEmail(email)
 
     if(!godparent){
         throw createError({
@@ -39,5 +39,5 @@ export default defineEventHandler(async (event) => {
 
     await setUserSession(event, user)
 
-    return {success: true, user}
+    return {success: true, godparent: {...user}}
 })
