@@ -38,5 +38,4 @@ export default defineEventHandler(async (event) => {
   });
 
   return { success: true, godparent: { ...(godparent as AuthGodparent) } };
-  // return { success: true}
 });

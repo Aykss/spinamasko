@@ -13,9 +13,11 @@
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "lint:eslint": "npx eslint .",
     "lint:prettier": "npx prettier ./server ./test --check",
+    "lint:type": "bunx tsc --noEmit",
     "format": "npm run format:eslint && npm run format:prettier",
     "format:eslint": "npx eslint . --fix",
-    "format:prettier": "npx prettier -w ./server ./test"
+    "format:prettier": "npx prettier -w ./server ./test",
+    "prepare": "husky"
   },
   "dependencies": {
     "@nuxt/eslint": "^1.12.1",
