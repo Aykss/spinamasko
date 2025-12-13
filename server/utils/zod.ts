@@ -10,3 +10,7 @@ export const signupSchema = z.object({
   password: z.string(),
   name: z.string(),
 });
+
+export const godparentSearchSchema = z.object({
+  query: z.string(),
+});
