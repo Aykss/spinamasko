@@ -29,4 +29,5 @@ prisma/generated
 
 /generated/prisma
 
-.vscode
+.vscode/*
+!.vscode/settings.json
