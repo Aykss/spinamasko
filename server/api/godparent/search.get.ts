@@ -1,4 +1,4 @@
-import { FindGodparentByUniqueID } from "~~/server/controllers/GodparentController";
+import { GetGodparentByUniqueID } from "~~/server/controllers/GodparentController";
 import { godparentSearchSchema } from "~~/server/utils/zod";
 
 export default defineEventHandler(async (event) => {
@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
 
   const data = queryString.data.query.trim();
 
-  const godparent = await FindGodparentByUniqueID(data);
+  const godparent = await GetGodparentByUniqueID(data);
 
   return { success: true, godparent };
 });
