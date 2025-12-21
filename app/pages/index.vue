@@ -1,12 +1,14 @@
 <script setup lang="ts">
+import { Godparent_Pronouns, Godparent_Pronouns_Label } from '~~/shared/types/prisma-types'
+
     const unique_id = ref("")
     const loginState = ref(1)
 
     const registerData = ref({
         name: "",
-        email: "",
         password: "",
-        confirmPassword: ""
+        confirmPassword: "",
+        pronouns: 1
     })
 
     let err = ref("")
@@ -38,19 +40,19 @@
                 const res = await $fetch("/api/auth/signup", {
                     method: "POST",
                     body: {
-                    email: registerData.value.email,
-                    password: registerData.value.password,
-                    name: registerData.value.name
+                        pronouns: registerData.value.pronouns,
+                        password: registerData.value.password,
+                        name: registerData.value.name
                     },
                 });
 
                 if(res.success){
-                    congrats.value = `${res.godparent.name}! Successfully created your account!`
+                    congrats.value = `Welcome ${Godparent_Pronouns_Label[res.godparent.pronouns as Godparent_Pronouns]} ${res.godparent.name}! Successfully created your account!`
                     registerData.value = {
                         name: "",
-                        email: "",
                         password: "",
-                        confirmPassword: ""
+                        confirmPassword: "",
+                        pronouns: 1
                     }
                 }
 
@@ -101,10 +103,15 @@
                                 <input type="text" v-model="registerData.name" class="input border-2 border-warning input-warning w-full" placeholder="Type here" required/>
                             </label>
 
-                            <label class="fieldset">
-                                <legend class="fieldset-legend">Email Address</legend>
-                                <input type="email" v-model="registerData.email" class="input border-2 border-warning input-warning w-full" placeholder="Type here" required/>
-                            </label>
+                            <div class="flex flex-row justify-start gap-5 pt-2">
+                                Pronoun Preference: 
+                                <label>
+                                    <input type="radio" name="ninong" :value="1" class="radio radio-warning" checked v-model="registerData.pronouns"/> Ninong
+                                </label>
+                                <label>
+                                    <input type="radio" name="ninang" :value="2" class="radio radio-warning" v-model="registerData.pronouns"/> Ninang
+                                </label>
+                            </div>
 
                             <label class="fieldset">
                                 <legend class="fieldset-legend">Password</legend>

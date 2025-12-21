@@ -2,6 +2,7 @@ export type AuthGodparent = {
   id: number;
   name: string;
   unique_id: string;
+  pronouns: number;
 };
 
 export type AuthResponse = {

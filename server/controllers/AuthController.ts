@@ -14,6 +14,7 @@ export async function CreateGodparent(
       id: true,
       unique_id: true,
       name: true,
+      pronouns: true,
     },
   });
 }
