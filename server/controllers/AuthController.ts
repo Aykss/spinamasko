@@ -1,8 +1,8 @@
 import { DB } from "~~/lib/database";
 import type * as GodparentModel from "~~/prisma/generated/prisma/models/Godparents";
 
-export async function FindGodparentByEmail(email: string) {
-  return await DB.godparents.findFirst({ where: { email: email } });
+export async function FindGodparentByName(name: string) {
+  return await DB.godparents.findFirst({ where: { name: name } });
 }
 
 export async function CreateGodparent(
@@ -14,7 +14,6 @@ export async function CreateGodparent(
       id: true,
       unique_id: true,
       name: true,
-      email: true,
     },
   });
 }
