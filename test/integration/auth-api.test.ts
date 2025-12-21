@@ -20,14 +20,13 @@ describe("Authentication API integration", async () => {
     const res: AuthResponse = await $fetch("/api/auth/signup", {
       method: "POST",
       body: {
-        email: "test@example.com",
+        pronouns: 1,
         password: "password123",
         name: "Tester",
       },
     });
 
     expect(res.success).toBe(true);
-    expect(res.godparent?.email).toEqual("test@example.com");
   });
 
   test("signup should not create a godparent with existing email", async () => {
@@ -36,7 +35,7 @@ describe("Authentication API integration", async () => {
       await $fetch("/api/auth/signup", {
         method: "POST",
         body: {
-          email: "test@example.com",
+          pronouns: 1,
           password: "password123",
           name: "Tester",
         },
@@ -60,7 +59,7 @@ describe("Authentication API integration", async () => {
       await $fetch("/api/auth/login", {
         method: "POST",
         body: {
-          email: "test@example.com",
+          name: "Tester",
           password: "password12354",
         },
       });
@@ -80,13 +79,12 @@ describe("Authentication API integration", async () => {
     const res: AuthResponse = await $fetch("/api/auth/login", {
       method: "POST",
       body: {
-        email: "test@example.com",
+        name: "Tester",
         password: "password123",
       },
     });
 
     expect(res.success).toBe(true);
-    expect(res.godparent?.email).toEqual("test@example.com");
   });
 
   test("login should create a session cookie", async () => {
@@ -94,7 +92,7 @@ describe("Authentication API integration", async () => {
 
     const res: AuthResponse = await $fetch("/api/auth/login", {
       method: "POST",
-      body: { email: "test@example.com", password: "password123" },
+      body: { name: "Tester", password: "password123" },
       headers: { "Content-Type": "application/json" },
       onResponse({ response }) {
         cookie = response.headers.get("set-cookie");

@@ -6,8 +6,8 @@ export const loginSchema = z.object({
 });
 
 export const signupSchema = z.object({
-  email: z.string(),
   password: z.string(),
+  pronouns: z.number(),
   name: z.string(),
 });
 
