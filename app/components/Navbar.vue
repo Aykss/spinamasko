@@ -3,6 +3,17 @@
 
     const menuOpen = ref(false)
     const toggleMenu = () => (menuOpen.value = !menuOpen.value)
+
+    async function logoutUser() {
+       const res = await $fetch('/api/auth/logout', {
+          method: 'POST',
+      })
+
+      if(res.success){
+        navigateTo('/')
+      }
+
+    }
 </script>
 
 <template>
@@ -13,6 +24,9 @@
       <ul class="hidden md:flex justify-between text-lg">
         <NavbarItem title="Home" route="/"/>
         <NavbarItem v-if="!loggedIn" title="Register" route="/" />
+        <NuxtLink v-else class="block py-2 px-3 text-white rounded-sm hover:bg-mugal-green" @click="logoutUser">
+          Logout
+        </NuxtLink>
       </ul>
 
       <!-- Mobile Button -->

@@ -4,6 +4,8 @@ import { Godparent_Pronouns, Godparent_Pronouns_Label } from '~~/shared/types/pr
     const unique_id = ref("")
     const loginState = ref(1)
 
+    const {loggedIn} = useUserSession()
+
     const registerData = ref({
         name: "",
         password: "",
@@ -64,7 +66,23 @@ import { Godparent_Pronouns, Godparent_Pronouns_Label } from '~~/shared/types/pr
     }
 
     async function handleLogin(){
-        
+        try {
+            const res = await $fetch("/api/auth/login", {
+                method: "POST",
+                body: {
+                    password: registerData.value.password,
+                    name: registerData.value.name
+                },
+            });
+
+            if(res.success){
+                reloadNuxtApp()
+            }
+
+        } catch (e) {
+            const apiErr = e as AuthError;
+            err.value = apiErr.statusMessage
+        }
     }
 
 </script>
@@ -81,9 +99,9 @@ import { Godparent_Pronouns, Godparent_Pronouns_Label } from '~~/shared/types/pr
             <button class="btn bg-green-600 text-white btn-wide" type="submit">Submit</button>
         </form>
 
-        <div class="text-center divider divider-warning px-5"><p class="text-sm">Are you a godparent?</p></div>
+        <div v-if="!loggedIn" class="text-center divider divider-warning px-5"><p class="text-sm">Are you a godparent?</p></div>
 
-        <div v-if="loginState == 1" class="w-full place-self-center max-w-3xl px-5 grid grid-cols-2 gap-5 py-3">
+        <div v-if="!loggedIn" class="w-full place-self-center max-w-3xl px-5 grid grid-cols-2 gap-5 py-3">
             <button class="btn bg-green-600 text-white" @click="loginState = 2">Login</button>
             <button class="btn bg-red-600 text-white" @click="loginState = 3">Register</button>
         </div>
@@ -152,7 +170,7 @@ import { Godparent_Pronouns, Godparent_Pronouns_Label } from '~~/shared/types/pr
                         </div>
                         <p class="text-2xl text-red-800 font-bold">Welcome back Ninong/Ninang!</p>
                         <p>Login and share your blessings this Christmas season</p>
-                        <form class="w-full grid gap-5" @submit.prevent="handleRegister">
+                        <form class="w-full grid gap-5" @submit.prevent="handleLogin">
                             <label class="fieldset">
                                 <legend class="fieldset-legend">Ninong/Ninang Name</legend>
                                 <input type="text" v-model="registerData.name" class="input border-2 border-warning input-warning w-full" placeholder="Type here" required/>
