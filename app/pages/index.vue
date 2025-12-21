@@ -101,7 +101,7 @@ import { Godparent_Pronouns, Godparent_Pronouns_Label } from '~~/shared/types/pr
 
         <div v-if="!loggedIn" class="text-center divider divider-warning px-5"><p class="text-sm">Are you a godparent?</p></div>
 
-        <template v-if="!loggedIn">
+        <div v-if="!loggedIn">
             <div v-if="loginState == 1" class="w-full place-self-center max-w-3xl px-5 grid grid-cols-2 gap-5 py-3">
                 <button class="btn bg-green-600 text-white" @click="loginState = 2">Login</button>
                 <button class="btn bg-red-600 text-white" @click="loginState = 3">Register</button>
@@ -161,7 +161,7 @@ import { Godparent_Pronouns, Godparent_Pronouns_Label } from '~~/shared/types/pr
                     </div>
                 </div>
             </div>
-        </template>
+        </div>
 
         <div v-if="loginState == 2" class="w-full px-5">
             <div class="card bg-base-100 w-full border-4 border-yellow-400 shadow-2xl">
@@ -197,5 +197,6 @@ import { Godparent_Pronouns, Godparent_Pronouns_Label } from '~~/shared/types/pr
                 </div>
             </div>
         </div>
-  </div>
+      </div>
+      <RegisterGodchild v-if="loggedIn"/>
 </template>

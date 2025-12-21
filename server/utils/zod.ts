@@ -14,3 +14,7 @@ export const signupSchema = z.object({
 export const godparentSearchSchema = z.object({
   query: z.string(),
 });
+
+export const godparentIdSchema = z.object({
+  godparent_id: z.number(),
+});
