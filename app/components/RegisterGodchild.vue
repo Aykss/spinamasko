@@ -65,7 +65,7 @@ import type { SessionUser } from '~~/shared/types/server-types'
             <div class="bg-red-600 px-6 py-4">
                 <p class="text-white text-2xl font-bold">{{ 'Inaanak ni ' + Godparent_Pronouns_Label[data.pronouns as Godparent_Pronouns] + ' ' + data.name}}</p>
             </div>
-            <div class="card-body">
+            <div class="card-body max-h-1/2">
                 <form class="grid md:grid-cols-3 gap-5" @submit.prevent="addInaanak">
                     <label class="fieldset">
                         <legend class="fieldset-legend text-md">Inaanak Name</legend>

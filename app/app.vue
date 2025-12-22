@@ -15,7 +15,7 @@
     <footer class="footer sm:footer-horizontal footer-center bg-red-600 text-base-content border-t-4 border-yellow-400 p-4">
     <aside class="flex">
       <img src="~/assets/icons/christmasTree.svg" class="w-7 h-7 md:w-10 md:h-10" />
-      <p class="text-white/70 text-lg">Maligayang Pasko at Manigong Bagong Taon!!</p>
+      <p class="text-white/70 md:text-lg">Maligayang Pasko at Manigong Bagong Taon!!</p>
       <img src="~/assets/icons/christmasTree.svg" class="w-7 h-7 md:w-10 md:h-10" />
     </aside>
   </footer>

@@ -70,8 +70,8 @@ import { Gift_Types } from '~~/shared/types/prisma-types';
             <div class="bg-red-600 px-6 py-4">
                 <p class="text-white text-2xl font-bold">Pamasko</p>
             </div>
-            <div class="card-body">
-                <form class="grid grid-cols-4 gap-5" @submit.prevent="addGift">
+            <div class="card-body max-h-1/2">
+                <form class="grid md:grid-cols-4 gap-5" @submit.prevent="addGift">
                     <label class="fieldset">
                         <legend class="fieldset-legend">Type of Gift</legend>
                         <select v-model="gift.type" class="select select-warning w-full">
@@ -94,7 +94,7 @@ import { Gift_Types } from '~~/shared/types/prisma-types';
                     <button class="btn bg-green-600 text-white md:mt-10" type="submit">Add Gift</button>
                 </form>
                 <div class="text-center divider divider-warning"></div>
-                <div v-if="list_gifts.length > 0" class="grid grid-cols-2 gap-7">
+                <div v-if="list_gifts.length > 0" class="grid md:grid-cols-2 gap-7">
                     <div v-for="gift in list_gifts" :key="gift.id" class="border-4 border-yellow-400 shadow-lg rounded-lg p-5">
                         <div class="grid gap-2">
                             <div class="flex justify-between items-center gap-2">
