@@ -66,7 +66,7 @@ import type { SessionUser } from '~~/shared/types/server-types'
                 <p class="text-white text-2xl font-bold">{{ 'Inaanak ni ' + Godparent_Pronouns_Label[data.pronouns as Godparent_Pronouns] + ' ' + data.name}}</p>
             </div>
             <div class="card-body">
-                <form class="grid grid-cols-3 gap-5" @submit.prevent="addInaanak">
+                <form class="grid md:grid-cols-3 gap-5" @submit.prevent="addInaanak">
                     <label class="fieldset">
                         <legend class="fieldset-legend text-md">Inaanak Name</legend>
                         <input type="text" v-model="inaanak.name" class="input border-2 border-warning input-warning w-full" placeholder="Type here" required/>
@@ -78,7 +78,7 @@ import type { SessionUser } from '~~/shared/types/server-types'
                     <button class="btn bg-green-600 text-white md:mt-10" type="submit">Add Inaanak</button>
                 </form>
                 <div class="text-center divider divider-warning"></div>
-                <div v-if="list_inaanak.length > 0" class="grid grid-cols-2 gap-7">
+                <div v-if="list_inaanak.length > 0" class="grid md:grid-cols-2 gap-7">
                     <div v-for="anak in list_inaanak" :key="anak.id" class="border-4 border-yellow-400 shadow-lg rounded-lg p-5">
                         <div class="grid gap-2">
                             <div class="flex justify-between items-center">
@@ -104,9 +104,9 @@ import type { SessionUser } from '~~/shared/types/server-types'
                             </div>
                         </div>
                         <div class="text-center divider divider-warning"></div>
-                        <div class="grid grid-cols-2 gap-5">
+                        <div class="grid md:grid-cols-2 gap-5">
+                            <button class="btn bg-green-600 text-white md:order-2" type="submit">View</button>
                             <button class="btn bg-red-600 text-white" type="submit">Remove</button>
-                            <button class="btn bg-green-600 text-white" type="submit">View</button>
                         </div>
                     </div>
                 </div>

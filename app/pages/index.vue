@@ -203,7 +203,7 @@ import { type Godparent_Pronouns, Godparent_Pronouns_Label } from '~~/shared/typ
             </div>
         </div>
         </div>
-      <div v-if="loggedIn" class="grid grid-cols-2 gap-5">
+      <div v-if="loggedIn" class="grid md:grid-cols-2 gap-5">
         <RegisterGodchild />
         <RegisterGift />
       </div>
