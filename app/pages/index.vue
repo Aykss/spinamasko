@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Godparent_Pronouns, Godparent_Pronouns_Label } from '~~/shared/types/prisma-types'
+import { type Godparent_Pronouns, Godparent_Pronouns_Label } from '~~/shared/types/prisma-types'
 
     const unique_id = ref("")
     const loginState = ref(1)
@@ -13,8 +13,8 @@ import { Godparent_Pronouns, Godparent_Pronouns_Label } from '~~/shared/types/pr
         pronouns: 1
     })
 
-    let err = ref("")
-    let congrats = ref("")
+    const err = ref("")
+    const congrats = ref("")
 
     async function handleFormSubmit () {
         const res = await $fetch('/api/godparent/search', {
@@ -88,7 +88,9 @@ import { Godparent_Pronouns, Godparent_Pronouns_Label } from '~~/shared/types/pr
 </script>
 
 <template>
-    <div class="w-full max-w-3xl">
+    
+    <div class="w-full">
+<div class="w-full max-w-3xl">
         <div class="w-full flex flex-col items-center gap-5 mt-5">
             <p class="text-5xl text-red-800 font-bold">Spinamasko</p>
             <p>Spin and win a Pamasko!</p>
@@ -197,9 +199,10 @@ import { Godparent_Pronouns, Godparent_Pronouns_Label } from '~~/shared/types/pr
                 </div>
             </div>
         </div>
-      </div>
+    </div>
       <div v-if="loggedIn" class="grid grid-cols-2 gap-5">
         <RegisterGodchild />
         <RegisterGift />
       </div>
+    </div>
 </template>

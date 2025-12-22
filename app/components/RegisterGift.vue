@@ -95,7 +95,7 @@ import { Gift_Types } from '~~/shared/types/prisma-types';
                 </form>
                 <div class="text-center divider divider-warning"></div>
                 <div v-if="list_gifts.length > 0" class="grid grid-cols-2 gap-7">
-                    <div v-for="gift in list_gifts" class="border-4 border-yellow-400 shadow-lg rounded-lg p-5">
+                    <div v-for="gift in list_gifts" :key="gift.id" class="border-4 border-yellow-400 shadow-lg rounded-lg p-5">
                         <div class="grid gap-2">
                             <div class="flex justify-between items-center gap-2">
                                 <span aria-label="success" class="status status-lg" :class="gift.type === Gift_Types.MONETARY ? 'status-success' : 'bg-red-600'"></span>

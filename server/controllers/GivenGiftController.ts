@@ -1,5 +1,5 @@
 import { DB } from "~~/lib/database";
-import { Prisma } from "~~/prisma/generated/prisma/client";
+import type { Prisma } from "~~/prisma/generated/prisma/client";
 
 export async function CreateGift(data: Prisma.Given_GiftsUncheckedCreateInput) {
   return await DB.given_Gifts.create({

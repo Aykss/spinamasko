@@ -1,5 +1,5 @@
 import { DB } from "~~/lib/database";
-import { Prisma } from "~~/prisma/generated/prisma/client";
+import type { Prisma } from "~~/prisma/generated/prisma/client";
 
 export async function GetGodchildrenByGodparentId(godparent_id: number) {
   return await DB.godchildren.findMany({

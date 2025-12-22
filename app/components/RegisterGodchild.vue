@@ -79,7 +79,7 @@ import type { SessionUser } from '~~/shared/types/server-types'
                 </form>
                 <div class="text-center divider divider-warning"></div>
                 <div v-if="list_inaanak.length > 0" class="grid grid-cols-2 gap-7">
-                    <div v-for="anak in list_inaanak" class="border-4 border-yellow-400 shadow-lg rounded-lg p-5">
+                    <div v-for="anak in list_inaanak" :key="anak.id" class="border-4 border-yellow-400 shadow-lg rounded-lg p-5">
                         <div class="grid gap-2">
                             <div class="flex justify-between items-center">
                                 <p class="text-2xl font-bold">{{ anak.name }}</p>
