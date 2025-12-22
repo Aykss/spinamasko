@@ -88,22 +88,26 @@ import { type Godparent_Pronouns, Godparent_Pronouns_Label } from '~~/shared/typ
 </script>
 
 <template>
-    <div class="w-full flex flex-col gap-10 justify-center items-center">
+    <div class="w-full flex flex-col gap-10 justify-center items-center min-h-screen">
         <div class="w-full max-w-3xl">
-        <div class="w-full flex flex-col items-center gap-5 mt-5">
-            <p class="text-5xl text-red-800 font-bold">Spinamasko</p>
-            <p>Spin and win a Pamasko!</p>
+        <div class="w-full flex flex-col items-center gap-5 py-5">
+            <div class="flex gap-5">
+                <img src="~/assets/icons/giftColored.svg" class="w-10 animate-bounce">
+                <p class="text-5xl text-red-800 font-bold">Spinamasko</p>
+                <img src="~/assets/icons/giftColored.svg" class="w-10 animate-bounce">
+            </div>
+            <p class="font-medium text-lg">Spin and win a Pamasko!</p>
         </div>
 
-        <form class="w-full flex place-self-center justify-center gap-5 px-5 max-w-3xl" @submit.prevent="handleFormSubmit">
+        <form class="w-full flex place-self-center justify-center gap-5 px-5 max-w-3xl flex-col md:flex-row" @submit.prevent="handleFormSubmit">
             <input type="text" v-model="unique_id" placeholder="Type ninong/ninang id" class="input border-green-600 btn-block input-success"/>
-            <button class="btn bg-green-600 text-white btn-wide" type="submit">Submit</button>
+            <button class="btn bg-green-600 text-white btn-block md:btn-wide" type="submit">Submit</button>
         </form>
 
-        <div v-if="!loggedIn" class="text-center divider divider-warning px-5"><p class="text-sm">Are you a godparent?</p></div>
+        <div v-if="!loggedIn" class="text-center divider divider-warning px-5"><p class="text-sm text-black">Are you a godparent?</p></div>
 
         <div v-if="!loggedIn">
-            <div v-if="loginState == 1" class="w-full place-self-center max-w-3xl px-5 grid grid-cols-2 gap-5 py-3">
+            <div v-if="loginState == 1" class="w-full place-self-center max-w-3xl px-5 grid md:grid-cols-2 gap-5 py-3">
                 <button class="btn bg-green-600 text-white" @click="loginState = 2">Login</button>
                 <button class="btn bg-red-600 text-white" @click="loginState = 3">Register</button>
             </div>
@@ -199,7 +203,7 @@ import { type Godparent_Pronouns, Godparent_Pronouns_Label } from '~~/shared/typ
             </div>
         </div>
         </div>
-      <div v-if="loggedIn" class="grid grid-cols-2 gap-5">
+      <div v-if="loggedIn" class="grid md:grid-cols-2 gap-5">
         <RegisterGodchild />
         <RegisterGift />
       </div>

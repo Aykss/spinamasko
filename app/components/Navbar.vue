@@ -19,7 +19,11 @@
 <template>
   <nav class="xl:container xl:mx-auto">
     <div class="flex flex-wrap justify-between items-center p-4 not-md:gap-2">
-      <NavbarItem title="Spinamasko" route="/"/>
+      <div class="flex items-center justify-center">
+        <img src="~/assets/icons/sparkleColored.svg" class="w-7 h-7 md:w-10 md:h-10"/>
+        <NavbarItem custom_class="font-bold" title="Spinamasko" route="/"/>
+        <img src="~/assets/icons/christmasTree.svg" class="w-7 h-7 md:w-10 md:h-10" />
+      </div>
      <!-- Desktop Version -->
       <ul class="hidden md:flex justify-between text-lg">
         <NavbarItem title="Home" route="/"/>
@@ -30,9 +34,8 @@
       </ul>
 
       <!-- Mobile Button -->
-       <button class="md:hidden" @click="toggleMenu" >
-          <!-- <img :src="navbarIcon" alt="Logo" class="w-6 h-6" /> -->
-           Menu
+       <button class="md:hidden flex items-center" @click="toggleMenu" >
+          <img src="~/assets/icons/hamburgerMenu.svg" alt="Menu" class="w-7 h-7" />
         </button>
         <ul :class="menuOpen ? 'block' : 'hidden'" class="md:hidden w-full">
           <NavbarItem title="Home" route="/"/>
