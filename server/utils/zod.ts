@@ -28,3 +28,10 @@ export const addInaanakSchema = z.object({
   name: z.string(),
   total_chances: ZodMaybeNumber,
 });
+
+export const addGivenGiftSchema = z.object({
+  name: z.string().optional(),
+  type: ZodMaybeNumber,
+  quantity: ZodMaybeNumber,
+  amount: ZodMaybeNumber,
+});

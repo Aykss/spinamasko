@@ -198,5 +198,8 @@ import { Godparent_Pronouns, Godparent_Pronouns_Label } from '~~/shared/types/pr
             </div>
         </div>
       </div>
-      <RegisterGodchild v-if="loggedIn"/>
+      <div v-if="loggedIn" class="grid grid-cols-2 gap-5">
+        <RegisterGodchild />
+        <RegisterGift />
+      </div>
 </template>

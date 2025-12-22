@@ -9,12 +9,13 @@ import type { SessionUser } from '~~/shared/types/server-types'
     })
 
     const {user} = useUserSession()
+    const data: SessionUser = {...user.value as SessionUser}
 
     const list_inaanak: Ref<Godchildren[]> = ref([])
 
     async function displayInaanak(){
         if(user != null){
-            const data: SessionUser = {...user.value as SessionUser}
+            
             const res = await $fetch(`/api/godparent/${data.id}/inaanak`)
             list_inaanak.value = res.map(item => ({
                 ...item,
@@ -28,7 +29,6 @@ import type { SessionUser } from '~~/shared/types/server-types'
     }
 
     async function addInaanak(){
-        const data: SessionUser = {...user.value as SessionUser}
         const res = await $fetch(`/api/godparent/${data.id}/add-inaanak`, {
             method: 'PUT',
             body: {
@@ -63,7 +63,7 @@ import type { SessionUser } from '~~/shared/types/server-types'
     <div class="w-full px-5">
         <div class="card bg-base-100 w-full border-4 border-yellow-400 shadow-2xl">
             <div class="bg-red-600 px-6 py-4">
-                <p class="text-white text-2xl font-bold">Inaanak</p>
+                <p class="text-white text-2xl font-bold">{{ 'Inaanak ni ' + Godparent_Pronouns_Label[data.pronouns as Godparent_Pronouns] + ' ' + data.name}}</p>
             </div>
             <div class="card-body">
                 <form class="grid grid-cols-3 gap-5" @submit.prevent="addInaanak">
@@ -78,7 +78,7 @@ import type { SessionUser } from '~~/shared/types/server-types'
                     <button class="btn bg-green-600 text-white md:mt-10" type="submit">Add Inaanak</button>
                 </form>
                 <div class="text-center divider divider-warning"></div>
-                <div v-if="list_inaanak.length > 0" class="grid grid-cols-3 gap-7">
+                <div v-if="list_inaanak.length > 0" class="grid grid-cols-2 gap-7">
                     <div v-for="anak in list_inaanak" class="border-4 border-yellow-400 shadow-lg rounded-lg p-5">
                         <div class="grid gap-2">
                             <div class="flex justify-between items-center">

@@ -36,6 +36,7 @@ export default defineEventHandler(async (event) => {
     id: godparent.id,
     name: godparent.name,
     unique_id: godparent.unique_id,
+    pronouns: godparent.pronouns,
   };
 
   await setUserSession(event, { user: user });
