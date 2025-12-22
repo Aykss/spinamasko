@@ -1,6 +1,16 @@
+<script setup lang="ts">
+</script>
+
 <template>
-  <div>
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome />
+  <div class="w-full h-screen bg-yellow-50 flex flex-col items-center overflow-auto">
+    <div class="w-full xl:flex xl:justify-center bg-red-600 sticky top-0 z-40 border-b-4 border-yellow-400">
+        <NavBar />
+    </div>
+     <div class="w-full flex flex-col justify-center items-center max-w-384 z-10 min-h-11/12 gap-10">
+        <NuxtPage/>
+    </div>
+    <div class="w-full xl:flex xl:justify-center bg-red-600 border-t-4 border-yellow-400 p-5">
+      <p class=" text-white/70">Maligayang Pasko at Manigong Bagong Taon!!</p>
+    </div>
   </div>
 </template>

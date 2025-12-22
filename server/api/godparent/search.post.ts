@@ -17,5 +17,12 @@ export default defineEventHandler(async (event) => {
 
   const godparent = await GetGodparentByUniqueID(data);
 
-  return { success: true, godparent };
+  if (godparent == null) {
+    throw createError({
+      statusCode: 401,
+      statusMessage: "No godparent found",
+    });
+  }
+
+  return { success: true, godparent: { ...godparent } };
 });

@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 import type { AuthGodparent } from "~~/server/utils/types";
 import {
   CreateGodparent,
-  FindGodparentByEmail,
+  FindGodparentByName,
 } from "~~/server/controllers/AuthController";
 
 export default defineEventHandler(async (event) => {
@@ -20,12 +20,12 @@ export default defineEventHandler(async (event) => {
 
   const data = result.data;
 
-  const existing = await FindGodparentByEmail(data.email);
+  const existing = await FindGodparentByName(data.name);
 
   if (existing != null) {
     throw createError({
       statusCode: 409,
-      statusMessage: "Email is already in use",
+      statusMessage: "Name is already in use",
     });
   }
 

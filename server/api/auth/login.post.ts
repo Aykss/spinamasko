@@ -1,4 +1,4 @@
-import { FindGodparentByEmail } from "~~/server/controllers/AuthController";
+import { FindGodparentByName } from "~~/server/controllers/AuthController";
 
 export default defineEventHandler(async (event) => {
   const result = await readValidatedBody(event, (body) =>
@@ -12,9 +12,9 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const { email, password } = result.data;
+  const { name, password } = result.data;
 
-  const godparent = await FindGodparentByEmail(email);
+  const godparent = await FindGodparentByName(name);
 
   if (!godparent) {
     throw createError({
@@ -35,11 +35,11 @@ export default defineEventHandler(async (event) => {
   const user = {
     id: godparent.id,
     name: godparent.name,
-    email: godparent.email,
     unique_id: godparent.unique_id,
+    pronouns: godparent.pronouns,
   };
 
-  await setUserSession(event, user);
+  await setUserSession(event, { user: user });
 
   return { success: true, godparent: { ...user } };
 });
