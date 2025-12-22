@@ -10,13 +10,13 @@ export default withNuxt(
   {
     files: ["components/**/*.vue"], // ✅ only check Vue files in components/
     plugins: { prettier },
+    rules: {
+      // Disable the multi-word component name rule
+      'vue/multi-word-component-names': 'off',
+    },
   },
   {
     files: ["test/**/*.ts"], // ✅ only check TS files in server/
     plugins: { prettier },
-  },
-  rules: {
-    // Disable the multi-word component name rule
-    'vue/multi-word-component-names': 'off',
   },
 )
