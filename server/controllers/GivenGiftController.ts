@@ -6,3 +6,11 @@ export async function CreateGift(data: Prisma.Given_GiftsUncheckedCreateInput) {
     data: data,
   });
 }
+
+export async function GetGiftsByGodparent(godparent_id: number) {
+  return await DB.given_Gifts.findMany({
+    where: {
+      godparents_id: godparent_id,
+    },
+  });
+}

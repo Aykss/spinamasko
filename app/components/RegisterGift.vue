@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Given_Gifts } from '~~/prisma/generated/prisma/client';
 import { Gift_Types } from '~~/shared/types/prisma-types';
     
     const gift = ref({
@@ -10,6 +11,8 @@ import { Gift_Types } from '~~/shared/types/prisma-types';
 
     const {user} = useUserSession()
     const data: SessionUser = {...user.value as SessionUser}
+
+    const list_gifts: Ref<(Omit<Given_Gifts, 'amount'> & { amount: number, quantityLeft: number })[]> = ref([])
 
     async function addGift(){
         const res = await $fetch(`/api/godparent/${data.id}/add-gift`, {
@@ -28,7 +31,36 @@ import { Gift_Types } from '~~/shared/types/prisma-types';
             amount: undefined,
             quantity: 1
         }
+
+        if(res != null){
+            list_gifts.value.push({
+                ...res,
+                amount: Number(res.amount),
+                created_at: new Date(res.created_at),
+                updated_at: new Date(res.updated_at),
+                quantityLeft: res.quantity
+            })
+
+            list_gifts.value.sort((a,b) => b.id - a.id)
+        }
     }
+
+    async function displayGifts(){
+        const res = await $fetch(`/api/godparent/${data.id}/gift`)
+        list_gifts.value = res.map(item => ({
+            ...item,
+            amount: Number(item.amount),
+            created_at: new Date(item.created_at),
+            updated_at: new Date(item.updated_at),
+            quantityLeft: item.quantityLeft ? item.quantityLeft : 0
+        }))
+
+        list_gifts.value.sort((a,b) => b.id - a.id)
+    }
+
+    onMounted(async() => {
+        displayGifts()
+    })
 
 </script>
 
@@ -62,8 +94,25 @@ import { Gift_Types } from '~~/shared/types/prisma-types';
                     <button class="btn bg-green-600 text-white md:mt-10" type="submit">Add Gift</button>
                 </form>
                 <div class="text-center divider divider-warning"></div>
-                <div>
-
+                <div v-if="list_gifts.length > 0" class="grid grid-cols-2 gap-7">
+                    <div v-for="gift in list_gifts" class="border-4 border-yellow-400 shadow-lg rounded-lg p-5">
+                        <div class="grid gap-2">
+                            <div class="flex justify-between items-center gap-2">
+                                <span aria-label="success" class="status status-lg" :class="gift.type === Gift_Types.MONETARY ? 'status-success' : 'bg-red-600'"></span>
+                                <p class="text-2xl font-bold">{{ gift.name == null ? `₱${gift.amount}` : gift.name }}</p>
+                                <img src="~/assets/icons/giftColored.svg">
+                            </div>
+                            <div class="flex justify-between items-center">
+                                    <p>Quantity Left: </p>
+                                    <p class="grow-0 font-semibold">{{ gift.quantityLeft }}</p>
+                            </div>
+                        </div>
+                        <div class="text-center divider divider-warning"></div>
+                        <button class="btn bg-red-600 text-white w-full" type="submit">Remove</button>
+                    </div>
+                </div>
+                <div v-else>
+                    <p>No Pamasko recorded yet</p>
                 </div>
             </div>
         </div>

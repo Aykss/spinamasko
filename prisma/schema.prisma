@@ -43,6 +43,8 @@ model Given_Gifts{
 
   godparents Godparents @relation(fields: [godparents_id], references: [id])
   godparents_id Int
+
+  received_gifts Received_Gifts[]
 }
 
 model Godchildren {
@@ -74,4 +76,7 @@ model Received_Gifts {
 
   godchildren Godchildren @relation(fields: [godchildren_id], references: [id])
   godchildren_id Int
+
+  given_gifts Given_Gifts @relation(fields: [given_gifts_id], references: [id])
+  given_gifts_id Int
 }
