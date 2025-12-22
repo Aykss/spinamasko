@@ -90,9 +90,13 @@ import { type Godparent_Pronouns, Godparent_Pronouns_Label } from '~~/shared/typ
 <template>
     <div class="w-full flex flex-col gap-10 justify-center items-center">
         <div class="w-full max-w-3xl">
-        <div class="w-full flex flex-col items-center gap-5 mt-5">
-            <p class="text-5xl text-red-800 font-bold">Spinamasko</p>
-            <p>Spin and win a Pamasko!</p>
+        <div class="w-full flex flex-col items-center gap-5 py-5">
+            <div class="flex gap-5">
+                <img src="~/assets/icons/giftColored.svg" class="w-10 animate-bounce">
+                <p class="text-5xl text-red-800 font-bold">Spinamasko</p>
+                <img src="~/assets/icons/giftColored.svg" class="w-10 animate-bounce">
+            </div>
+            <p class="font-medium text-lg">Spin and win a Pamasko!</p>
         </div>
 
         <form class="w-full flex place-self-center justify-center gap-5 px-5 max-w-3xl" @submit.prevent="handleFormSubmit">
