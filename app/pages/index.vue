@@ -88,9 +88,8 @@ import { type Godparent_Pronouns, Godparent_Pronouns_Label } from '~~/shared/typ
 </script>
 
 <template>
-    
-    <div class="w-full">
-<div class="w-full max-w-3xl">
+    <div class="w-full flex flex-col gap-10 justify-center items-center">
+        <div class="w-full max-w-3xl">
         <div class="w-full flex flex-col items-center gap-5 mt-5">
             <p class="text-5xl text-red-800 font-bold">Spinamasko</p>
             <p>Spin and win a Pamasko!</p>
@@ -199,7 +198,7 @@ import { type Godparent_Pronouns, Godparent_Pronouns_Label } from '~~/shared/typ
                 </div>
             </div>
         </div>
-    </div>
+        </div>
       <div v-if="loggedIn" class="grid grid-cols-2 gap-5">
         <RegisterGodchild />
         <RegisterGift />
